@@ -15,7 +15,7 @@ table, th, td {
       
 <h1>Users List</h1>
 <div class="col-md-6 offset-md-4">
-<a href="#" class="btn btn-info btn-lg">
+<a href="/user/new" class="btn btn-info btn-lg">
           <span class="glyphicon glyphicon-plus"></span> Create 
         </a>
         </div>
@@ -25,8 +25,12 @@ table, th, td {
         <tr>
             <th>#</th>
             <th>id</th>
-            <th>name</th>
-            <th>email</th>
+            <th>First Name</th>
+            <th>Middlename</th>
+            <th>Lastname</th>
+            <th>Suffixname</th>
+            <th>Username</th>
+            <th>Email</th>
             <th>created</th>
         </tr>
 
@@ -37,7 +41,11 @@ table, th, td {
     asset('storage/photos/no-image.jpg')}} width="70" height="70"/>
         </th>
         <th>{{$user->id}}</th>
-        <th>{{$user->name}}</th>
+        <th>{{$user->firstname}}</th>
+        <th>{{$user->middlename}}</th>
+        <th>{{$user->lastname}}</th>
+        <th>{{$user->suffixname}}</th>
+        <th>{{$user->username}}</th>
         <th>{{$user->email}}</th>
         <th>{{$user->created_at}}</th>
         <th class="mt-4 p-2 flex space-x-6">
