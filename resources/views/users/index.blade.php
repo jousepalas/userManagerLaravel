@@ -59,6 +59,9 @@ table, th, td {
                 <button class="text-red-500"><i class="fa-solid fa-trash"></i>Delete</button>
             </form>    
             </th>
+            <th>
+            <form method="GET" action="/show/{{$user->id}}">
+                <button class="text-red-500"><i class="fa-solid fa-eye"></i>Show</button></th>
     </tr>
     
     @endforeach
