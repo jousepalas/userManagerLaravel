@@ -25,15 +25,15 @@ return view('users.show', ['user' => $user]);
 // dd($request);
 $formFields = $request->validate([
     // 'prefixname' =>'required',
-    // 'firstname' =>'required',
+    'firstname' =>'required',
     // 'middlename' =>'required',
-    // 'lastname' =>'required',
+    'lastname' =>'required',
     // 'suffixname' =>'required',
-    // 'username' =>'required',
+    'username' =>'required',
     'email' =>['required', 'email', Rule::unique('users', 'email')],
     'password' =>'required',
     // 'photo' =>'required',
-    'name' => 'required'
+    // 'name' => 'required'
 ]);
 if($request->hasFile('photo')) {
     $formFields['photo'] = $request->file('photo')->store('photos', 'public');
