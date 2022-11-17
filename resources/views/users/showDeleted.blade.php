@@ -44,15 +44,14 @@ table, th, td {
 <th>{{$user->email}}</th>
 <th>{{$user->created_at}}</th>
 <th class="mt-4 p-2 flex space-x-6">
-    <form method="POST" action="user/delete/submit/{{$user->id}}">
+    <form method="POST" action="user/destroy/submit/{{$user->id}}">
         @csrf
-        @method('DELETE')
+        @method('POST')
         <button class="text-red-500"><i class="fa-solid fa-trash"></i>Destroy</button>
     </form>    
 
-    <form method="GET" action="/restore/client/{{$user->id}}">
-    @csrf
-                <button class="text-green-500"><span>&#9842;</span> Restore</button>
+    <form method="GET" action="/restoreClient/{{$user->id}}">
+            <button class="text-green-500"><span>&#9842;</span> Restore</button>
             </form>
 </th>
 

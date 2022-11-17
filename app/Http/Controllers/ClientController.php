@@ -79,8 +79,8 @@ return redirect('/index')->with('message', 'Client created successfully!');
         return view('users.showDeleted', ['users' => Client::onlyTrashed()->get()]);
     }
 
-    public function restoreClient (Client $user) {
-        $user->restore();
+    public function restoreClient ($user) {
+        Client::where('id', $user)->restore();
         return view('users.showDeleted', ['users' => Client::onlyTrashed()->get()]);
     }
 
@@ -89,8 +89,8 @@ return redirect('/index')->with('message', 'Client created successfully!');
         return redirect('/index')->with('message', 'User deleted successfully');
     }
 
-    public function destroy(Client $user) {
-        $user->forceDelete();;
-        return redirect('/index')->with('message', 'User softDeleted successfully');
+    public function destroy($user) {
+        Client::where('id', $user)->forceDelete();
+        return redirect('/index')->with('message', 'User destroied successfully');
     }
 }
