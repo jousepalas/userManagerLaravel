@@ -64,6 +64,13 @@
 
   <x-flash-message />
 
+  <div class="col-md-6 offset-md-4">
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" href="/index">Back </a>
+    </li>
+  </ul>
+        </div>
   </div>
 </body>
 </html>

@@ -75,9 +75,22 @@ return redirect('/index')->with('message', 'Client created successfully!');
             return redirect('/index')->with('message', 'User updated successfully!');    
     }
 
+    public function showDeleted () {
+        return view('users.showDeleted', ['users' => Client::onlyTrashed()->get()]);
+    }
+
+    public function restoreClient (Client $user) {
+        $user->restore();
+        return view('users.showDeleted', ['users' => Client::onlyTrashed()->get()]);
+    }
+
     public function delete (Client $user) {
         $user->delete();
         return redirect('/index')->with('message', 'User deleted successfully');
     }
 
+    public function destroy(Client $user) {
+        $user->forceDelete();;
+        return redirect('/index')->with('message', 'User softDeleted successfully');
+    }
 }

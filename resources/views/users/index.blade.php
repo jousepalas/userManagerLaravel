@@ -15,9 +15,22 @@ table, th, td {
       
 <h1>Users List</h1>
 <div class="col-md-6 offset-md-4">
-<a href="/user/new" class="btn btn-info btn-lg">
-          <span class="glyphicon glyphicon-plus"></span> Create 
-        </a>
+<p class="text-center">Centered nav:</p>
+  <ul class="nav justify-content-center">
+    <li class="nav-item">
+      <a class="nav-link" href="/user/new" class="btn btn-info btn-lg">
+                  <span class="glyphicon glyphicon-plus"></span> Create </a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/softDeleted">Soft Deleted</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#">Link</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link disabled" href="#">Disabled</a>
+    </li>
+  </ul>
         </div>
 <div class="mx-4">
 <table>
@@ -58,10 +71,20 @@ table, th, td {
                 @method('DELETE')
                 <button class="text-red-500"><i class="fa-solid fa-trash"></i>Delete</button>
             </form>    
+         
+            <form method="GET" action="/show/{{$user->id}}">
+                <button class="text-red-500"><i class="fa-solid fa-eye"></i>Show</button>
+            </form>
             </th>
             <th>
-            <form method="GET" action="/show/{{$user->id}}">
-                <button class="text-red-500"><i class="fa-solid fa-eye"></i>Show</button></th>
+            <form method="POST" action="user/destroy/submit/{{$user->id}}">
+                @csrf
+                @method('POST')
+                <button class="text-red-500"><i class="fa-solid fa-trash"></i>Destroy</button>
+
+            </form>
+            </th>
+
     </tr>
     
     @endforeach

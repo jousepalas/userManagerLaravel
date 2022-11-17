@@ -93,6 +93,13 @@ php artisan make:model users -m
 
 php artisan migrate
 
+or
+
+php artisan migrate:fresh --seed
+
+=> run seed
+php artisan db:seed
+
 * User table added
 
 ## Day 3 -> Wednesday
@@ -120,3 +127,14 @@ http://localhost:8000/register
 php artisan make:controller admin --plain
 
 
+# Unit Test
+
+-> ClientController
+Index, Show, New, Store, Edit, Destroy, Delete
+
+-> UserControler
+Register, Login
+
+=> command:
+
+php vendor/bin/phpunit tests

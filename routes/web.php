@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\UserController;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,18 +20,24 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/index', [ClientController::class, 'index']);
-Route::get('/show/{user}', [ClientController::class, 'show']);
-Route::get('/user/new', [ClientController::class, 'create']);
-Route::post('/store', [ClientController::class, 'store']);
+Route::get('/index', [ClientController::class, 'index'])->middleware('auth');
+Route::get('/show/{user}', [ClientController::class, 'show'])->middleware('auth');
+Route::get('/user/new', [ClientController::class, 'create'])->middleware('auth');
+Route::post('/store', [ClientController::class, 'store'])->middleware('auth');
 //create
 //store - store new
 //edit
-Route::get('user/edit/{user}', [ClientController::class, 'edit']);
+Route::get('user/edit/{user}', [ClientController::class, 'edit'])->middleware('auth');
 //update
-Route::put('user/edit/submit/{user}', [ClientController::class, 'update']);
+Route::put('user/edit/submit/{user}', [ClientController::class, 'update'])->middleware('auth');
+//soft delete
+Route::delete('user/delete/submit/{user}', [ClientController::class, 'delete'])->middleware('auth');
 //destroy
-Route::delete('user/delete/submit/{user}', [ClientController::class, 'delete']);
+Route::post('user/destroy/submit/{user}', [ClientController::class, 'destroy'])->middleware('auth');
+//show soft delete
+Route::get('/softDeleted', [ClientController::class, 'showDeleted'])->middleware('auth');
+//restore client
+Route::get('/restore/client/{user}', [ClientController::class, 'restoreClient'])->middleware('auth');
 
 //Admin routes
 //Register
@@ -38,7 +45,7 @@ Route::get('/register', [UserController::class, 'create']);
 Route::post('/register/new', [UserController::class, 'new']);
 
 //login
-Route::get('/login', [UserController::class, 'login']);
+Route::get('/login', [UserController::class, 'login'])->name('login');
 Route::post('/admin/authenticate', [UserController::class, 'authenticate']);
 //logout
 Route::post('/logout', [UserController::class, 'logout']);
