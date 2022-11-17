@@ -24,17 +24,18 @@ return view('users.show', ['user' => $user]);
     public function store(Request $request) {
 // dd($request);
 $formFields = $request->validate([
-    // 'prefixname' =>'required',
+    'prefixname' =>'sometimes',
     'firstname' =>'required',
-    // 'middlename' =>'required',
+    'middlename' =>'sometimes',
     'lastname' =>'required',
-    // 'suffixname' =>'required',
+    'suffixname' =>'sometimes',
     'username' =>'required',
     'email' =>['required', 'email', Rule::unique('users', 'email')],
     'password' =>'required',
-    // 'photo' =>'required',
+    'photo' =>'sometimes',
     // 'name' => 'required'
 ]);
+$formFields['password'] = Hash::make($request->password);
 if($request->hasFile('photo')) {
     $formFields['photo'] = $request->file('photo')->store('photos', 'public');
 }
